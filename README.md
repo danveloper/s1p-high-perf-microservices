@@ -82,4 +82,29 @@ Trial 4
 
 | EC2 Instance Type | RDS Instance Type | Max Req/Sec Recorded |
 |-------------------|-------------------|----------------------|
-| m4.large          | t2.medium         |                      |
+| m4.large          | t2.medium         | 13,884               |
+
+```
+# ./wrk -t4 -c72 -d60s -R20000 http://localhost:5050
+Running 1m test @ http://localhost:5050
+  4 threads and 72 connections
+  Thread calibration: mean lat.: 1405.393ms, rate sampling interval: 4927ms
+  Thread calibration: mean lat.: 1663.260ms, rate sampling interval: 6381ms
+  Thread calibration: mean lat.: 1610.518ms, rate sampling interval: 5992ms
+  Thread calibration: mean lat.: 1506.068ms, rate sampling interval: 5328ms
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    10.48s     4.99s   23.63s    65.29%
+    Req/Sec     3.49k   113.93     3.69k    55.88%
+  833028 requests in 1.00m, 277.26MB read
+Requests/sec:  13884.09
+Transfer/sec:      4.62MB
+```
+
+_Note_: It shouldn't be surprising that performance is less on AWS's memory-intensive instance class, because Ratpack is CPU-bound. It's worth keeping in mind that this is the case and that you need to do some work to find out the proper instance class for your application's use case.
+
+Trail 5
+---
+
+| EC2 Instance Type | RDS Instance Type | Max Req/Sec Recorded |
+|-------------------|-------------------|----------------------|
+| c4.large          | t2.medium         |                      |
