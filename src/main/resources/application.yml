@@ -1,0 +1,5 @@
+db:
+  username: danw
+  password: foo
+  database: danw
+  poolSize: 4

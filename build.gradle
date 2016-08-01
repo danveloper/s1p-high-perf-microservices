@@ -1,0 +1,25 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'io.ratpack:ratpack-gradle:1.4.0-rc-2'
+    classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+  }
+}
+
+apply plugin: 'io.ratpack.ratpack-java'
+apply plugin: 'idea'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  compile ratpack.dependency('spring-boot')
+  compile ratpack.dependency('rx')
+  compile 'com.github.alaisi.pgasync:postgres-async-driver:0.9'
+}
+
+mainClassName = "springone.Main"
