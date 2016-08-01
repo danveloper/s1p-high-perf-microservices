@@ -1,13 +1,15 @@
-= Ratpack + Spring Boot + Async PostgreSQL
-
+Ratpack + Spring Boot + Async PostgreSQL
+===
 
 This is a demonstration of a Ratpack application that leverages Spring Boot and makes an asynchronous database call to PostgreSQL. This is from the Spring One Platform 2016 talk, "High Performance Microservices with Ratpack and Spring Boot". This talk demonstrates leveraging Ratpack as the high throughput, non-blocking web layer to an application that is built with the comforts and familiarities of Spring Boot.
 
-= Performance Testing
+Performance Testing
+===
 
 With no additional server configuration or tuning, the following results were recorded:
 
-== EC2 t2.micro 
+EC2 t2.micro 
+---
 
 | EC2 Instance Type | RDS Instance Type | Max Req/Sec Recorded |
 |-------------------|-------------------|----------------------|
