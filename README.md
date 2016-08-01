@@ -8,7 +8,7 @@ Performance Testing
 
 With no additional server configuration or tuning, the following results were recorded:
 
-EC2 t2.micro 
+Trial 1
 ---
 
 | EC2 Instance Type | RDS Instance Type | Max Req/Sec Recorded |
@@ -30,3 +30,33 @@ Running 1m test @ http://localhost:5050
 Requests/sec:   9529.38
 Transfer/sec:      3.17MB
 ```
+
+Trial 2
+---
+
+| EC2 Instance Type | RDS Instance Type | Max Req/Sec Recorded |
+|-------------------|-------------------|----------------------|
+| t2.medium         | t2.micro          | 10,259               |
+
+```
+# ./wrk -t4 -c72 -d60s -R15000 http://localhost:5050
+Running 1m test @ http://localhost:5050
+  4 threads and 72 connections
+  Thread calibration: mean lat.: 1557.261ms, rate sampling interval: 5705ms
+  Thread calibration: mean lat.: 1553.418ms, rate sampling interval: 5693ms
+  Thread calibration: mean lat.: 1555.895ms, rate sampling interval: 5701ms
+  Thread calibration: mean lat.: 1557.657ms, rate sampling interval: 5709ms
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency    11.04s     4.57s   19.22s    57.52%
+    Req/Sec     2.56k    22.48     2.60k    75.00%
+  615528 requests in 1.00m, 204.87MB read
+Requests/sec:  10258.71
+Transfer/sec:      3.41MB
+```
+
+Trial 3
+---
+
+| EC2 Instance Type | RDS Instance Type | Max Req/Sec Recorded |
+|-------------------|-------------------|----------------------|
+| t2.medium         | t2.medium         |                      |
