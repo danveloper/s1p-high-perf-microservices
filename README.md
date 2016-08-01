@@ -59,4 +59,27 @@ Trial 3
 
 | EC2 Instance Type | RDS Instance Type | Max Req/Sec Recorded |
 |-------------------|-------------------|----------------------|
-| t2.medium         | t2.medium         |                      |
+| t2.medium         | t2.medium         | 17,399               |
+
+```
+# ./wrk -t4 -c72 -d60s -R20000 http://localhost:5050
+Running 1m test @ http://localhost:5050
+  4 threads and 72 connections
+  Thread calibration: mean lat.: 668.483ms, rate sampling interval: 2269ms
+  Thread calibration: mean lat.: 666.548ms, rate sampling interval: 2248ms
+  Thread calibration: mean lat.: 677.119ms, rate sampling interval: 2285ms
+  Thread calibration: mean lat.: 669.698ms, rate sampling interval: 2271ms
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     4.33s     1.84s    8.08s    57.61%
+    Req/Sec     4.36k   120.14     4.52k    67.06%
+  1043910 requests in 1.00m, 347.45MB read
+Requests/sec:  17398.57
+Transfer/sec:      5.79MB
+```
+
+Trial 4
+---
+
+| EC2 Instance Type | RDS Instance Type | Max Req/Sec Recorded |
+|-------------------|-------------------|----------------------|
+| m4.large          | t2.medium         |                      |
