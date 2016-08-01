@@ -153,4 +153,22 @@ Trial 7
 
 | EC2 Instance Type | RDS Instance Type | Max Req/Sec Recorded |
 |-------------------|-------------------|----------------------|
-| c4.xlarge         | t2.large          |                      |
+| c4.xlarge         | t2.large          | 23,149               |
+
+```
+# ./wrk -t4 -c100 -d60s -R25000 http://localhost:5050
+Running 1m test @ http://localhost:5050
+  4 threads and 100 connections
+  Thread calibration: mean lat.: 346.475ms, rate sampling interval: 1235ms
+  Thread calibration: mean lat.: 347.531ms, rate sampling interval: 1232ms
+  Thread calibration: mean lat.: 347.625ms, rate sampling interval: 1254ms
+  Thread calibration: mean lat.: 347.428ms, rate sampling interval: 1245ms
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     2.54s     1.13s    5.64s    59.59%
+    Req/Sec     5.80k    71.22     5.89k    83.02%
+  1388845 requests in 1.00m, 462.25MB read
+Requests/sec:  23148.93
+Transfer/sec:      7.70MB
+```
+
+_Note_: The first thing I'd like to note is that this combo went from a cold JVM to 20,000 rps without breaking a sweat. Normally, I run the test over 5 mins to ensure the JVM is warm (usually doesn't improve dramatically after the first round of calls), but this combo was seeing performance right out of the gates. The second thing I'd like to point out is that I increased the number of persistent connections to see if I could squeeze a few more RPS out of the run, so here you'll see 4 x 100 instead of my normal 4 x 72.
